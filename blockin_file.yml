@@ -1,2 +1,4 @@
 ---
 - name: example file of blockin file mmodule.
+  hosts: all
+  become: yes
