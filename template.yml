@@ -9,10 +9,11 @@
 
   tasks:
     - name: Install required packages
-      apt:
+      yum:
         name:
           - unzip
           - wget
+          - httpd
         state: present
 
     - name: Create temporary directory for ZIP file
@@ -44,7 +45,7 @@
 
     - name: Ensure the web server is running
       service:
-        name: apache2
+        name: httpd
         state: started
         enabled: yes
 ...
