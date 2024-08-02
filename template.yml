@@ -46,7 +46,7 @@
 
     - name: Ensure the web server is running
       service:
-        name: apache2
+        name: apache2.services
         state: started
         enabled: no
 ...
