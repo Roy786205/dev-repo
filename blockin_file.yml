@@ -10,3 +10,4 @@
         block: |               # Block of content to add
           hello we are learning ansible on friday
         backup: yes            # Backup the file before making changes
+...
