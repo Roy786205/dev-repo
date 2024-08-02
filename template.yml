@@ -44,22 +44,9 @@
         path: "{{ temp_dir }}"
         state: absent
 
-    - name: Ensure Apache configuration is valid
-      command: apachectl configtest
-      register: apache_configtest
-      failed_when: "'Syntax OK' not in apache_configtest.stdout"
-
-    - name: Ensure the web server is running
+    - name: Ensure Apache service is running
       service:
         name: apache2
         state: started
         enabled: yes
-
-    - name: Display Apache service status
-      command: systemctl status apache2
-      ignore_errors: yes
-
-    - name: Display Apache error log
-      command: tail -n 10 /var/log/apache2/error.log
-      ignore_errors: yes
 ...
