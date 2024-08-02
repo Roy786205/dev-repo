@@ -11,7 +11,7 @@
 
     - name: Create multiple files in /media
       file:
-        path: "/media/file{{ item }}"
+        path: "/media/vikas{{ item }}"
         state: touch
         mode: '0644'
       with_sequence: start=1 end=10
