@@ -6,4 +6,5 @@
       lineinfile:
         state: present
         dest: /media/rohit
-        line: 
+        line: hello ranger
+...         
