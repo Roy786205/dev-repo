@@ -8,3 +8,4 @@
         path: /media/rohit   # Correct parameter name
         line: "hello ranger" # Line of content to ensure in the file
         create: yes          # Create the file if it doesn't exist
+...
