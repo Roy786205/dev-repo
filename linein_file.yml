@@ -1,2 +1,4 @@
 ---
-- name: example playbook for lineinfile:
+- name: example playbook for lineinfile module
+  hosts: all
+  tasks: 
