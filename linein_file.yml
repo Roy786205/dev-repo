@@ -5,4 +5,5 @@
     - name: task realated to file operation/task
       lineinfile:
         state: present
-        dest: / 
+        dest: /media/rohit
+        line: 
