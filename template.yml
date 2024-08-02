@@ -1,25 +1,15 @@
 ---
-- name: Update Existing Files Named 'rohit'
+- name: Update File Named 'rohit'
   hosts: all
   become: yes
   vars:
-    file_name: "rohit"
-    content: |
-      This is the new content for the file.
-      You can add multiple lines of text here.
+    file_path: "/media/rohit"
+    content_line: "This is the line of content to add."
 
   tasks:
-    - name: Find files named 'rohit'
-      find:
-        paths: /media/rohit
-        patterns: "{{ rohit }}"
-      register: found_files
-
     - name: Ensure content is present in the file
-      blockinfile:
-        path: "{{ /media/rohit }}"
-        block: "{{ content }}"
+      lineinfile:
+        path: "{{ file_path }}"
+        line: "{{ content_line }}"
         create: yes
-      loop: "{{ found_files.files }}"
-      when: found_files.matched > 0
 ...
