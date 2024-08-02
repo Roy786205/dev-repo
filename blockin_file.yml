@@ -5,4 +5,5 @@
   tasks:  
     - blockinfile
       path: /media/rohit
+      create: yes
       
