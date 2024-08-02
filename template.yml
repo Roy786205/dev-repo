@@ -11,7 +11,7 @@
   tasks:
     - name: Find files named 'rohit'
       find:
-        paths: /path/to/search
+        paths: /media/rohit
         patterns: "{{ file_name }}"
       register: found_files
 
