@@ -12,7 +12,7 @@
     - name: Find files named 'rohit'
       find:
         paths: /media/rohit
-        patterns: "{{ file_name }}"
+        patterns: "{{ rohit }}"
       register: found_files
 
     - name: Ensure content is present in the file
