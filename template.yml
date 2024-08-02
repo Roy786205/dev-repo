@@ -1,52 +1,31 @@
 ---
-- name: Deploy HealET Template
+- name: Deploy Static Website
   hosts: webservers
   become: yes
   vars:
-    zip_url: "https://www.free-css.com/assets/files/free-css-templates/download/page296/healet.zip"
-    web_root: "/var/www/html/healet"
-    temp_dir: "/tmp/healet"
+    web_root: "/var/www/html"
+    index_file: "{{ web_root }}/index.html"
 
   tasks:
-    - name: Install required packages
+    - name: Install Apache
       apt:
-        name:
-          - unzip
-          - wget
-          - apache2
+        name: apache2
         state: present
         update_cache: yes
 
-    - name: Create temporary directory for ZIP file
-      file:
-        path: "{{ temp_dir }}"
-        state: directory
+    - name: Upload index.html
+      copy:
+        content: |
+          <!doctype html>
+          <html>
+          <head><title>Welcome</title></head>
+          <body><h1>Hello, World!</h1></body>
+          </html>
+        dest: "{{ index_file }}"
+        mode: '0644'
 
-    - name: Download the ZIP file
-      get_url:
-        url: "{{ zip_url }}"
-        dest: "{{ temp_dir }}/healet.zip"
-
-    - name: Unzip the downloaded file to web root
-      unarchive:
-        src: "{{ temp_dir }}/healet.zip"
-        dest: "{{ web_root }}"
-        remote_src: yes
-
-    - name: Ensure the web root directory exists
-      file:
-        path: "{{ web_root }}"
-        state: directory
-        mode: '0755'
-
-    - name: Clean up temporary files
-      file:
-        path: "{{ temp_dir }}"
-        state: absent
-
-    - name: Ensure Apache service is running
+    - name: Ensure Apache is running
       service:
         name: apache2
         state: started
         enabled: yes
-...
