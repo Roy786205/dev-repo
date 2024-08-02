@@ -4,7 +4,7 @@
   become: yes
   vars:
     file_path: "/media/rohit"
-    content_line: "This is the line of content to add."
+    content_line: "This ."
 
   tasks:
     - name: Ensure content is present in the file
