@@ -1,0 +1,17 @@
+---
+- name: Create file in /media
+  hosts: all
+  become: yes  # Ensure that the playbook runs with elevated privileges
+  tasks:
+    - name: Ensure /media directory exists
+      file:
+        path: /media
+        state: directory
+        mode: '0755'
+
+    - name: Create file named rohit in /media
+      file:
+        path: /media/rohit
+        state: touch
+        mode: '0644'
+...
