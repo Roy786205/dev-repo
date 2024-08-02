@@ -1,26 +1,25 @@
 ---
-- name: Deploy Docker Container
+- name: Update Existing Files Named 'rohit'
   hosts: all
   become: yes
+  vars:
+    file_name: "rohit"
+    content: |
+      This is the new content for the file.
+      You can add multiple lines of text here.
 
   tasks:
-    - name: Install Docker
-      apt:
-        name: docker.io
-        state: present
-        update_cache: yes
+    - name: Find files named 'rohit'
+      find:
+        paths: /path/to/search
+        patterns: "{{ file_name }}"
+      register: found_files
 
-    - name: Ensure Docker service is running
-      service:
-        name: docker
-        state: started
-        enabled: yes
-
-    - name: Run Docker container
-      docker_container:
-        name: nginx
-        image: nginx:latest
-        state: started
-        ports:
-          - "80:80"
+    - name: Ensure content is present in the file
+      blockinfile:
+        path: "{{ item.path }}"
+        block: "{{ content }}"
+        create: yes
+      loop: "{{ found_files.files }}"
+      when: found_files.matched > 0
 ...
