@@ -1,12 +1,12 @@
 ---
-- name: example file of blockin file mmodule.
+- name: Example Playbook for blockinfile Module
   hosts: all
   become: true
-  tasks:  
-    - blockinfile
-      path: /media/rohit
-      create: yes
-      block: 
+  tasks:
+    - name: Ensure block of content is present in the file
+      blockinfile:
+        path: /media/rohit      # Path to the file
+        create: yes            # Create the file if it does not exist
+        block: |               # Block of content to add
           hello we are learning ansible on friday
-      backup: yes
-...          
+        backup: yes            # Backup the file before making changes
