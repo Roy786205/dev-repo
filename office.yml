@@ -1,0 +1,19 @@
+---
+- name: Manage users
+  hosts: all
+  become: yes  # Ensure that the playbook runs with elevated privileges
+  tasks:
+    - name: Ensure user rohit is present
+      user:
+        name: rohit
+        state: present
+        comment: "User rohit"
+        shell: /bin/bash
+
+    - name: Ensure user vikas is present
+      user:
+        name: vikas
+        state: present
+        comment: "User vikas"
+        shell: /bin/bash
+...
