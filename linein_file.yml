@@ -3,4 +3,5 @@
   hosts: all
   tasks: 
     - name: task realated to file operation/task
-      line 
+      lineinfile:
+        state: p 
