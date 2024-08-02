@@ -1,5 +1,4 @@
----
-- name: Deploy HealET Template
+-
   hosts: webservers
   become: yes  # Ensure that tasks run with elevated privileges
   vars:
