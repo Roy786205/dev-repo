@@ -1,0 +1,63 @@
+---
+- name: Deploy HealET Template
+  hosts: webservers
+  become: yes  # Ensure that tasks run with elevated privileges
+  vars:
+    # URL to download the ZIP file
+    zip_url: "https://www.free-css.com/assets/files/free-css-templates/download/page296/healet.zip"
+    # Destination directory on the target server
+    web_root: "/var/www/html/healet"
+    # Temp directory to store downloaded ZIP
+    temp_dir: "/tmp/healet"
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - unzip
+          - wget
+        state: present
+      become: yes
+
+    - name: Create temporary directory for ZIP file
+      file:
+        path: "{{ temp_dir }}"
+        state: directory
+
+    - name: Download the ZIP file
+      get_url:
+        url: "{{ zip_url }}"
+        dest: "{{ temp_dir }}/healet.zip"
+
+    - name: Unzip the downloaded file
+      unarchive:
+        src: "{{ temp_dir }}/healet.zip"
+        dest: "{{ temp_dir }}"
+        remote_src: yes
+
+    - name: Ensure the web root directory exists
+      file:
+        path: "{{ web_root }}"
+        state: directory
+        mode: '0755'
+
+    - name: Copy extracted files to the web root
+      copy:
+        src: "{{ temp_dir }}/healet/"
+        dest: "{{ web_root }}/"
+        owner: www-data
+        group: www-data
+        mode: '0755'
+        recurse: yes
+
+    - name: Clean up temporary files
+      file:
+        path: "{{ temp_dir }}"
+        state: absent
+
+    - name: Ensure the web server is running
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+...
