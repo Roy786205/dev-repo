@@ -9,12 +9,13 @@
 
   tasks:
     - name: Install required packages
-      package:
+      apt:
         name:
           - unzip
           - wget
-          - httpd
+          - apache2
         state: present
+        update_cache: yes
 
     - name: Create temporary directory for ZIP file
       file:
@@ -45,7 +46,6 @@
 
     - name: Ensure the web server is running
       service:
-        name: httpd
+        name: apache2
         state: started
         enabled: yes
-...
