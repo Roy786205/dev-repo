@@ -1,0 +1,18 @@
+---
+- name: Create multiple files in /media
+  hosts: all
+  become: yes  # Ensure that the playbook runs with elevated privileges
+  tasks:
+    - name: Ensure /media directory exists
+      file:
+        path: /media
+        state: directory
+        mode: '0755'
+
+    - name: Create multiple files in /media
+      file:
+        path: "/media/file{{ item }}"
+        state: touch
+        mode: '0644'
+      with_sequence: start=1 end=10
+...
