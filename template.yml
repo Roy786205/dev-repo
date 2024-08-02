@@ -9,7 +9,7 @@
 
   tasks:
     - name: Install required packages
-      yumapt:
+      apt:
         name:
           - unzip
           - wget
