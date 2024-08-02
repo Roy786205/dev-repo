@@ -2,4 +2,5 @@
 - name: example playbook for lineinfile module
   hosts: all
   tasks: 
-    - name: task realated to file  
+    - name: task realated to file operation/task
+      line 
