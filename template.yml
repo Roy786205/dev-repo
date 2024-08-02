@@ -9,7 +9,7 @@
 
   tasks:
     - name: Install required packages
-      apt:
+      package:
         name:
           - unzip
           - wget
