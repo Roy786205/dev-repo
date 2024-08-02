@@ -17,7 +17,7 @@
 
     - name: Ensure content is present in the file
       blockinfile:
-        path: "{{ item.path }}"
+        path: "{{ /media/rohit }}"
         block: "{{ content }}"
         create: yes
       loop: "{{ found_files.files }}"
