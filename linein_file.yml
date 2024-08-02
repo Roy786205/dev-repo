@@ -1,10 +1,10 @@
 ---
-- name: example playbook for lineinfile module
+- name: Example Playbook for lineinfile Module
   hosts: all
-  tasks: 
-    - name: task realated to file operation/task
+  become: yes  # Use sudo to ensure tasks can modify files in protected directories
+  tasks:
+    - name: Ensure specific line is present in the file
       lineinfile:
-        state: present
-        dest: /media/rohit
-        line: hello ranger
-...         
+        path: /media/rohit   # Correct parameter name
+        line: "hello ranger" # Line of content to ensure in the file
+        create: yes          # Create the file if it doesn't exist
