@@ -8,6 +8,6 @@ resource "aws_instance" "instance1"{
     instance_type = "t2.micro"
 
     tags = {
-       name = ""
+       name = "my-demo-instance"
     }
 }
