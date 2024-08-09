@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion = '2010-09-09'
 Description: AWS CloudFormation Template to create a basic VPC
 
 Resources:
