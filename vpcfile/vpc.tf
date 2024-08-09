@@ -29,7 +29,7 @@ resource "aws_instance" "server_1" {
 
 #variable block calling all values
 variable "region" {
-    default = "us-west-2"
+    default = "ap-south-1"
     description = "region calling"
 }
 
