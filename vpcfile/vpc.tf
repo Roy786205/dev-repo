@@ -73,3 +73,4 @@ Outputs:
   InternetGatewayId:
     Description: The ID of the Internet Gateway
     Value: !Ref MyInternetGateway
+...
