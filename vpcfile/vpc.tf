@@ -9,10 +9,10 @@ Resources:
       CidrBlock: 10.0.0.0/16
       EnableDnsSupport: true
       EnableDnsHostnames = true
-      Tags:
+      Tags:{
         - Key: Name
           Value: MyVPC
-
+      }
   # Internet Gateway
   MyInternetGateway:
     Type: AWS::EC2::InternetGateway
