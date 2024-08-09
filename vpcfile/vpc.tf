@@ -8,7 +8,7 @@ Resources:
     Properties:
       CidrBlock: 10.0.0.0/16
       EnableDnsSupport: true
-      EnableDnsHostnames true
+      EnableDnsHostnames = true
       Tags:
         - Key: Name
           Value: MyVPC
