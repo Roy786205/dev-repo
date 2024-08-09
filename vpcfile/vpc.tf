@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion = '2010-09-09'
-Description: AWS CloudFormation Template to create a basic VPC
+Description =  AWS CloudFormation Template to create a basic VPC
 
 Resources:
   # VPC Resource
