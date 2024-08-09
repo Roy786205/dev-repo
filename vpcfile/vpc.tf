@@ -1,76 +1,62 @@
-AWSTemplateFormatVersion = '2010-09-09'
-Description =  AWS CloudFormation Template to create a basic VPC
+#Provider for authentication
+# provider "aws" {
+#     region = var.region
+# }
 
-Resources:
-  # VPC Resource
-  MyVPC:
-    Type: AWS::EC2::VPC
-    Properties: 
-      CidrBlock: 10.0.0.0/16
-      Tags:
-        - Key: Name
-          Value: MyVPC
 
-  # Internet Gateway
-  MyInternetGateway:
-    Type: AWS::EC2::InternetGateway
-    Properties:
-      Tags:
-        - Key: Name
-          Value: MyInternetGateway
+# # Terraform for S3 Backend
+# terraform {
+#     backend "s3" {
+#     bucket = "prod-terrraform.tfstate"
+#     key    = "terraform.tfstate"
+#     region = "us-west-2"
+#     }
+# }
 
-  # Attach Internet Gateway to VPC
-  VPCGatewayAttachment:
-    Type: AWS::EC2::VPCGatewayAttachment
-    Properties:
-      VpcId: !Ref MyVPC
-      InternetGatewayId: !Ref MyInternetGateway
+# #Data block for SG
+# data "aws_security_group" "server" {
+#     name = "default"
+# }
 
-  # Public Subnet
-  MyPublicSubnet:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref MyVPC
-      CidrBlock: 10.0.1.0/24
-      AvailabilityZone: !Select [0, !GetAZs '']
-      MapPublicIpOnLaunch: true
-      Tags:
-        - Key: Name
-          Value: MyPublicSubnet
+# # resource block for server creation
+# resource "aws_instance" "server_1" {
+#     ami = var.ami
+#     instance_type = var.instance_type
+#     key_name = var.key_name
+#     tags = var.tags
+#     vpc_security_group_ids = [data.aws_security_group.server.id]
+# }
 
-  # Route Table for Public Subnet
-  MyPublicRouteTable:
-    Type: AWS::EC2::RouteTable
-    Properties:
-      VpcId: !Ref MyVPC
-      Tags:
-        - Key: Name
-          Value: MyPublicRouteTable
+# #variable block calling all values
+# variable "region" {
+#     default = "us-west-2"
+#     description = "region calling"
+# }
 
-  # Route to the Internet Gateway
-  MyPublicRoute:
-    Type: AWS::EC2::Route
-    DependsOn: VPCGatewayAttachment
-    Properties:
-      RouteTableId: !Ref MyPublicRouteTable
-      DestinationCidrBlock: 0.0.0.0/0
-      GatewayId: !Ref MyInternetGateway
+# variable "ami" {
+#     default = "ami-0f7197c592205b389"
+#     description = "calling ami"
+# }
 
-  # Associate Route Table with Public Subnet
-  MySubnetRouteTableAssociation:
-    Type: AWS::EC2::SubnetRouteTableAssociation
-    Properties:
-      SubnetId: !Ref MyPublicSubnet
-      RouteTableId: !Ref MyPublicRouteTable
+# variable "instance_type" {
+#   default = "t2.micro"
+#   description = "calling instance type"
+# }
 
-Outputs:
-  VPCId:
-    Description: The ID of the VPC
-    Value: !Ref MyVPC
-  SubnetId:
-    Description: The ID of the public subnet
-    Value: !Ref MyPublicSubnet
-  InternetGatewayId:
-    Description: The ID of the Internet Gateway
-    Value: !Ref MyInternetGateway
-...
+# variable "key_name" {
+#     default = "windows_global_key"
+#     description = "calling key-pair"
+# }
+
+# variable "tags" {
+#     type = map
+#     default = {
+#     Name = "Development-server"
+#     Enviorment = "staging"
+#     Owner = "jarvis"
+#     }
+# }
+
+# output "test" {
+#     value = data.aws_security_group.server.id
+# }
