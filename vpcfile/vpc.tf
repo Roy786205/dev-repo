@@ -4,7 +4,7 @@ Description: Create a basic VPC with a public subnet and internet gateway
 Resources:
   # VPC Resource
   MyVPC:
-    Type: AWS::EC2::VPC
+    Type =  AWS::EC2::VPC
     Properties{
       CidrBlock = "10.0.0.0/16"
       EnableDnsSupport = true
