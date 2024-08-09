@@ -13,6 +13,7 @@ Resources:
         - Key: Name
           Value: MyVPC
       }
+    }
   # Internet Gateway
   MyInternetGateway:
     Type: AWS::EC2::InternetGateway
