@@ -4,7 +4,7 @@ ami = "ami-022ce6f32988af5fa"
 
 instance_type = "t2.micro" 
 
-key_name = "hybrid"
+key_name = "hybridroy"
 
 tags = {
     Enviorment = "staging"
