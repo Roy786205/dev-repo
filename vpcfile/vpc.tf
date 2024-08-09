@@ -14,7 +14,7 @@ resource "aws_internet_gateway" "gw" {
 resource "aws_default_subnet" "default_az1" {
   availability_zone = "ap-south-1a"
   vpc_id = aws_default_vpc.default.id
-  cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/24"
   map_public_ip_on_launch = true
   tags = {
     Name = "Default subnet for ap-south-1a"
